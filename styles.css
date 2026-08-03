@@ -101,6 +101,29 @@ nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--seal)
   line-height: 1.0; letter-spacing: -0.03em; margin: 2vh 0 0; max-width: 18ch; text-wrap: balance;
 }
 
+/* ---- docket: the three numbers between headline and specimen ---- */
+.docket { margin: 0 0 6vh; }
+.docket-lead { max-width: 58ch; font-size: 17px; color: var(--ink-2); margin: 0 0 3.5vh; }
+.docket-row { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule-dark); }
+.docket-item { padding: 22px 22px 6px 0; border-right: 1px solid var(--rule); }
+.docket-item + .docket-item { padding-left: 22px; }
+.docket-item:last-child { border-right: 0; }
+.docket-item .n {
+  display: block; font-family: var(--grot); font-weight: 800;
+  font-size: clamp(38px, 4.6vw, 64px); letter-spacing: -0.03em; line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.docket-item .n.seal { color: var(--seal); }
+.docket-item .cap {
+  display: block; margin-top: 10px; font-family: var(--mono); font-size: 11px;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); max-width: 30ch; line-height: 1.6;
+}
+@media (max-width: 720px) {
+  .docket-row { grid-template-columns: 1fr; }
+  .docket-item, .docket-item + .docket-item { border-right: 0; border-bottom: 1px solid var(--rule); padding: 16px 0 14px; }
+  .docket-item:last-child { border-bottom: 0; }
+}
+
 /* ---- redaction specimen ---- */
 .specimen {
   margin-left: auto; max-width: 62ch; font-family: var(--mono); font-size: 14.5px; line-height: 1.9;
