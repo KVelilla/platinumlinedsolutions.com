@@ -123,6 +123,14 @@ nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--seal)
   display: block; margin-top: 16px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
 }
 .specimen .verdict b { color: var(--seal); font-weight: 600; }
+.replay {
+  margin-top: 14px; padding: 6px 12px; cursor: pointer;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3); background: none; border: 1px solid var(--rule-dark); border-radius: 999px;
+  opacity: 0; pointer-events: none; transition: opacity .4s ease, color .15s ease, border-color .15s ease;
+}
+.replay.show { opacity: 1; pointer-events: auto; }
+.replay:hover, .replay:focus-visible { color: var(--seal); border-color: var(--seal); outline: none; }
 
 /* ---- sections ---- */
 section { padding: 8vh 0 2vh; }

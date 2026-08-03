@@ -41,6 +41,7 @@
       rate start dates correctly push to January 1 of the new year, yet enrollment still returns the old year's rates.
       Root cause: rate configuration is evaluated as of the life-event occurred date — which sits in the prior plan year, not the year coverage starts.
       <span class="verdict">What left this machine: <b>the last two lines only.</b> Names, orgs, IDs, dates — masked on hardware we own, restored only for us. (Scenario illustrative; no client data appears on this site — that's rather the point.)</span>
+      <button class="replay" id="replay" type="button" aria-label="Replay the masking demonstration">⟲ run the masking again</button>
     </div>
   </section>
 
@@ -160,31 +161,48 @@
 <script>
   (function () {
     const spans = Array.from(document.querySelectorAll("#specimen .pii"));
+    const replay = document.getElementById("replay");
     if (!spans.length) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let started = false;
-    function maskOne(el, delay) {
+    // Remember each span's original obscured text so the sequence can be replayed without a refresh.
+    spans.forEach((el) => { el.dataset.orig = el.querySelector(".t").textContent; });
+    let running = false;
+    function maskOne(el, delay, isLast) {
       setTimeout(() => {
         el.classList.add("masking");
         setTimeout(() => {
           el.querySelector(".t").textContent = el.dataset.token;
           el.classList.add("tokened");
+          if (isLast) {
+            running = false;
+            if (replay) replay.classList.add("show");
+          }
         }, reduced ? 0 : 400);
       }, reduced ? 0 : delay);
     }
     function run() {
-      if (started) return;
-      started = true;
-      spans.forEach((el, i) => maskOne(el, 900 + i * 650));
+      if (running) return;
+      running = true;
+      if (replay) replay.classList.remove("show");
+      // Reset to the obscured originals (no-op on the very first run).
+      spans.forEach((el) => {
+        el.classList.remove("masking", "tokened");
+        el.querySelector(".t").textContent = el.dataset.orig;
+      });
+      // A beat to take in the restored text, then mask one at a time.
+      spans.forEach((el, i) => maskOne(el, 900 + i * 650, i === spans.length - 1));
     }
+    if (replay) replay.addEventListener("click", run);
+    let firstRunDone = false;
+    function firstRun() { if (firstRunDone) return; firstRunDone = true; run(); }
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver((entries) => {
-        if (entries.some((e) => e.isIntersecting)) { run(); io.disconnect(); }
+        if (entries.some((e) => e.isIntersecting)) { firstRun(); io.disconnect(); }
       }, { threshold: 0.4 });
       io.observe(document.getElementById("specimen"));
-      setTimeout(run, 2500);
+      setTimeout(firstRun, 2500);
     } else {
-      run();
+      firstRun();
     }
   })();
 </script>
