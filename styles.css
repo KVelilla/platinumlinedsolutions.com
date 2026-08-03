@@ -70,14 +70,16 @@ a { color: inherit; }
 header.mast {
   display: flex; justify-content: space-between; align-items: baseline;
   padding: 26px 0 20px; border-bottom: 1px solid var(--rule-dark);
+  flex-wrap: wrap; gap: 10px 26px; /* narrow screens: the nav drops below the wordmark as a whole row */
 }
-.wordmark { font-family: var(--grot); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; text-decoration: none; }
+.wordmark { font-family: var(--grot); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; }
 .wordmark .pt { color: var(--ink-3); font-weight: 500; }
-nav { display: flex; gap: 26px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
-nav a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+nav { display: flex; flex-wrap: wrap; gap: 8px 26px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+/* each link wraps as a UNIT — "How we work" must never fold into a word tower */
+nav a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; white-space: nowrap; }
 nav a:hover, nav a:focus-visible { color: var(--ink); border-bottom-color: var(--seal); outline: none; }
 nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--seal); }
-@media (max-width: 640px) { nav { gap: 14px; font-size: 11px; } }
+@media (max-width: 640px) { nav { gap: 6px 14px; font-size: 11px; } }
 
 /* ---- hero (index) ---- */
 .hero { padding: 9vh 0 7vh; }
