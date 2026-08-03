@@ -35,10 +35,11 @@
       <span class="cap">A worked example — watch the client details</span>
       Ticket from <span class="pii" data-token="[Person 1]"><span class="t">J■■■■ H■■■■■■</span><span class="bar"></span></span> at
       <span class="pii" data-token="[Org 1]"><span class="t">M■■■■■■■ H■■■■■■■■</span><span class="bar"></span></span>:
-      new-hire enrollment window closes before eligibility evaluates.
-      Person <span class="pii" data-token="[ID 1]"><span class="t">4■■■■■2</span><span class="bar"></span></span> hired
-      <span class="pii" data-token="[Date 1]"><span class="t">0■/■■/2026</span><span class="bar"></span></span>, offered no plans.
-      Root cause: the life-event window opens on the hire date, but eligibility derives from a factor evaluated at period start.
+      December new hires are being charged prior-year rates.
+      Person <span class="pii" data-token="[ID 1]"><span class="t">4■■■■■2</span><span class="bar"></span></span>, hired
+      <span class="pii" data-token="[Date 1]"><span class="t">12/■■/20■■</span><span class="bar"></span></span> — coverage and
+      rate start dates correctly push to January 1 of the new year, yet enrollment still returns the old year's rates.
+      Root cause: rate configuration is evaluated as of the life-event occurred date — which sits in the prior plan year, not the year coverage starts.
       <span class="verdict">What left this machine: <b>the last two lines only.</b> Names, orgs, IDs, dates — masked on hardware we own, restored only for us. (Scenario illustrative; no client data appears on this site — that's rather the point.)</span>
     </div>
   </section>
