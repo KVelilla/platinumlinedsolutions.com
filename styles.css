@@ -56,7 +56,7 @@ a { color: inherit; }
 /* Ink over rules, never rules over ink: every block that carries TYPE sits opaque on the
    sheet, so the drafting rules live in the margins and section gaps — the negative space —
    and never bisect a letterform, from the masthead to the footnote. */
-.mast, .ledger-line, h1, .intro, .docket-lead, .instrument, .covenant, .prose, .specimen, .ledger, section h2, footer .foot, .hallnote {
+.mast, .ledger-line, h1, .hallmark, .intro, .docket-lead, .instrument, .covenant, .prose, .specimen, .ledger, section h2, footer {
   position: relative; background: var(--paper);
 }
 
