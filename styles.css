@@ -49,6 +49,9 @@ a { color: inherit; }
 .sheet .grow { flex: 1; }
 .sheet::before, .sheet::after {
   content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--rule);
+  /* Painted BEHIND all in-flow content: ::after otherwise paints LAST, on top of the
+     ink-over-rules masks — the right rule was slicing text the left one respected. */
+  z-index: -1;
 }
 .sheet::before { left: max(24px, 18%); }
 .sheet::after { right: max(24px, 9%); }
