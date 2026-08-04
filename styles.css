@@ -120,7 +120,7 @@ nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--seal)
 .docket-item .n.seal { color: var(--seal); }
 .docket-item .cap {
   display: block; margin-top: 10px; font-family: var(--mono); font-size: 11px;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); max-width: 30ch; line-height: 1.6;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); max-width: 48ch; line-height: 1.6;
 }
 @media (max-width: 720px) {
   .docket-row { grid-template-columns: 1fr; }
