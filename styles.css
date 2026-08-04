@@ -53,10 +53,10 @@ a { color: inherit; }
 .sheet::before { left: max(24px, 18%); }
 .sheet::after { right: max(24px, 9%); }
 @media (max-width: 860px) { .sheet::before, .sheet::after { display: none; } }
-/* Ink over rules, never rules over ink: every READING block sits opaque on the sheet, so the
-   drafting rules show in the hero, the margins, and the section gaps — the negative space —
-   but never bisect body copy. (Display type in the hero keeps them behind it: texture.) */
-.intro, .docket-lead, .instrument, .covenant, .prose, .specimen, .ledger, section h2, footer .foot, .hallnote {
+/* Ink over rules, never rules over ink: every block that carries TYPE sits opaque on the
+   sheet, so the drafting rules live in the margins and section gaps — the negative space —
+   and never bisect a letterform, from the masthead to the footnote. */
+.mast, .ledger-line, h1, .intro, .docket-lead, .instrument, .covenant, .prose, .specimen, .ledger, section h2, footer .foot, .hallnote {
   position: relative; background: var(--paper);
 }
 
