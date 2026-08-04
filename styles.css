@@ -106,7 +106,9 @@ nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--seal)
 /* ---- docket: the three numbers between headline and specimen ---- */
 .docket { margin: 0 0 6vh; }
 .docket-lead { max-width: 58ch; font-size: 17px; color: var(--ink-2); margin: 0 0 3.5vh; }
-.docket-row { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule-dark); }
+/* Opaque + positioned: the sheet's full-height drafting rules must pass ABOVE and BELOW this
+   band, never through it — a stray vertical inside a bordered table reads as a broken cell. */
+.docket-row { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule-dark); position: relative; background: var(--paper); }
 .docket-item { padding: 22px 22px 6px 0; border-right: 1px solid var(--rule); }
 .docket-item + .docket-item { padding-left: 22px; }
 .docket-item:last-child { border-right: 0; }
